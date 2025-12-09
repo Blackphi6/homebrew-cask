@@ -7,8 +7,11 @@ cask "hyperswitch" do
   desc "Keyboard window switcher"
   homepage "https://bahoom.com/hyperswitch/"
 
+  # The homepage doesn't display version information, and the download URL is unversioned.
+  # The version can only be determined by downloading and inspecting the app bundle's Info.plist.
+  # Since this requires downloading the entire ZIP file for each check, we skip livecheck.
   livecheck do
-    skip "No version information available"
+    skip "Version information is not available on the homepage or in the download URL"
   end
 
   app "HyperSwitch.app"
