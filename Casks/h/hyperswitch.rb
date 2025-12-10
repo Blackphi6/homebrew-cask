@@ -7,17 +7,16 @@ cask "hyperswitch" do
   desc "Keyboard window switcher"
   homepage "https://bahoom.com/hyperswitch/"
 
-  # The homepage doesn't display version information, and the download URL is unversioned.
-  # The version can only be determined by downloading and inspecting the app bundle's Info.plist.
-  # Since this requires downloading the entire ZIP file for each check, we skip livecheck.
   livecheck do
-    skip "Version information is not available on the homepage or in the download URL"
+    url "https://bahoom.com/hyperswitch/appcast.xml"
+    strategy :sparkle, &:short_version
   end
 
   app "HyperSwitch.app"
 
   zap trash: [
-    "~/Library/Application Support/HyperSwitch",
+    "~/Library/Caches/com.bahoom.HyperSwitch",
+    "~/Library/HTTPStorages/com.bahoom.HyperSwitch",
     "~/Library/Preferences/com.bahoom.HyperSwitch.plist",
   ]
 end
